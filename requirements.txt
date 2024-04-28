@@ -1,0 +1,7 @@
+httpx
+beautifulsoup4
+fake-useragent
+fastapi
+fastapi-cache2
+pydantic-settings
+uvicorn
