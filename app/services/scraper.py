@@ -8,7 +8,9 @@ ua = UserAgent()
 HEADERS = {"User-Agent": ua.random}
 
 
-async def scrape_quotes(base_url: str, page_count: int) -> List[Dict[str, List[str]]]:
+async def scrape_quotes(
+    base_url: str, page_count: int, max_quotes: int
+) -> List[Dict[str, List[str]]]:
     quotes_data = []
     async with httpx.AsyncClient(headers=HEADERS, timeout=None) as client:
         for page in range(1, page_count + 1):
@@ -41,4 +43,4 @@ async def scrape_quotes(base_url: str, page_count: int) -> List[Dict[str, List[s
                         "tags": tags,
                     }
                 )
-    return quotes_data
+    return quotes_data[:max_quotes]

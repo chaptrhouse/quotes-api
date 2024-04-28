@@ -14,6 +14,7 @@ router = APIRouter()
 async def get_quotes(
     category: Optional[str] = Query(None, enum=["popular", "recent", "new"]),
     page_count: int = Query(1, description="Number of pages to fetch"),
+    max_quotes: int = Query(10, description="Maximum number of quotes to return"),
 ):
     urls = {
         "popular": "https://www.goodreads.com/quotes?page=1",
@@ -22,7 +23,7 @@ async def get_quotes(
     }
     url = urls.get(category, urls["popular"])
 
-    quotes = await scrape_quotes(url, page_count)
+    quotes = await scrape_quotes(url, page_count, max_quotes)
 
     return QuotesResponse(
         quotes=[
