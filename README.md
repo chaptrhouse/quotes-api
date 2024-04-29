@@ -31,7 +31,10 @@ python3 app/main.py
 Swagger documentation can be viewed at http://localhost:8000/docs
 
 ```bash
-curl -X GET "http://localhost:8000/quotes?category=popular&page_count=1&max_quotes=10" -H "accept: application/json" | jq
+curl -X \
+ GET "http://localhost:8000/quotes?category=popular&page_count=1&max_quotes=2" -H \
+ "accept: application/json" | jq
+
 ```
 
 ```json
